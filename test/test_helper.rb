@@ -3,7 +3,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/reporters"
 
-Minitest::Reporters.use! 
+Minitest::Reporters.use!
 
 module ActiveSupport
   class TestCase
