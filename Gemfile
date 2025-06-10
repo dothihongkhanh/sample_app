@@ -60,6 +60,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "rails-controller-testing"
 end
 
 group :development, :test do
@@ -67,3 +68,6 @@ group :development, :test do
   gem "guard-minitest"
   gem "minitest-reporters"
 end
+
+gem "sassc-rails"
+gem "bootstrap"
