@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:new] do
+  resources :users, only: [ :new ] do
     get "/signup", to: "new", on: :collection
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
