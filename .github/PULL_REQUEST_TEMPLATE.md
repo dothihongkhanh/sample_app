@@ -4,3 +4,4 @@
 
 ## Checklist
 - [ ] Passed `rails test`
+- [ ] Passed `rubocop`
