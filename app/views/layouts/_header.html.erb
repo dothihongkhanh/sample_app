@@ -1,0 +1,18 @@
+<header>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <%= link_to "Sample App" , root_path, id: "logo" %>
+      <ul class="navbar-nav flex-row ms-auto">
+        <li class="nav-item me-3">
+          <%= link_to "Home" , root_path, class: "nav-link text-white" %>
+        </li>
+        <li class="nav-item me-3">
+          <%= link_to "Help" , help_static_pages_path, class: "nav-link text-white" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Log in" , signup_users_path, class: "nav-link text-white" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
