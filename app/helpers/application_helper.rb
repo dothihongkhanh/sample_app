@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def error_messages_for(object, field)
-    return unless object.errors[field].any?
+    return if object.errors[field].blank?
 
     content_tag(:div, class: "invalid-feedback") do
       object.errors.full_messages_for(field).join("<br>").html_safe
