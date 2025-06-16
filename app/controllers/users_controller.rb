@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [ :show ]
+
   def show
-    @user = User.find(params[:id])
+    @user
   end
 
   def new
@@ -16,6 +18,13 @@ class UsersController < ApplicationController
     else
       render "new"
     end
+  end
+
+  private
+
+  def set_user
+    @user = User.find_by(id: params[:id])
+    redirect_to root_path, alert: "User not found" unless @user
   end
 
   def user_params
