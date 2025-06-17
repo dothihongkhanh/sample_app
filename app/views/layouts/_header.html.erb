@@ -1,18 +1,47 @@
 <header>
-  <nav class="navbar navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container">
-      <%= link_to "Sample App" , root_path, id: "logo" %>
-      <ul class="navbar-nav flex-row ms-auto">
-        <li class="nav-item me-3">
-          <%= link_to "Home" , root_path, class: "nav-link text-white" %>
-        </li>
-        <li class="nav-item me-3">
-          <%= link_to "Help" , help_static_pages_path, class: "nav-link text-white" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Log in" , signup_users_path, class: "nav-link text-white" %>
-        </li>
-      </ul>
+      <%= link_to "Sample App", root_path, id: "logo", class: "navbar-brand" %>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item me-3">
+            <%= link_to "Home", root_path, class: "nav-link text-white" %>
+          </li>
+          <li class="nav-item me-3">
+            <%= link_to "Help", help_static_pages_path, class: "nav-link text-white" %>
+          </li>
+
+          <% if logged_in? %>
+            <li class="nav-item me-3">
+              <%= link_to "Users", "#", class: "nav-link text-white" %>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                 data-bs-toggle="dropdown" aria-expanded="false">
+                Account
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><%= link_to "Profile", current_user, class: "dropdown-item" %></li>
+                <li><%= link_to "Settings", "#", class: "dropdown-item" %></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <%= link_to "Log out", logout_session_path, method: :delete, data: { turbo_method: :delete }, class: "dropdown-item" %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Log in", login_session_path, class: "nav-link text-white" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>
