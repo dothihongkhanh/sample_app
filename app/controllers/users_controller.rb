@@ -58,24 +58,24 @@ class UsersController < ApplicationController
   end
 
   def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please login!"
-      redirect_to login_session_path
-    end
+    return if logged_in?
+
+    store_location
+    flash[:danger] = "Please login!"
+    redirect_to login_session_path
   end
 
   def correct_user
-    unless current_user?(@user)
-      flash[:danger] = "You don't have permission to access this page."
-      redirect_to root_url
-    end
+    return if current_user?(@user)
+
+    flash[:danger] = "You don't have permission to access this page."
+    redirect_to root_url
   end
 
   def admin_user
-    unless current_user.admin?
-      flash[:danger] = "Only admin have permission to delete user."
-      redirect_to root_url
-    end
+    return if current_user.admin?
+
+    flash[:danger] = "Only admin have permission to delete user."
+    redirect_to root_url
   end
 end
