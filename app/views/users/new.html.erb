@@ -1,28 +1,10 @@
 <% provide(:title, 'Sign up') %>
+<% provide(:button_text, 'Create my account') %>
+
 <h1>Sign up</h1>
 
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    <%= form_with(model: @user, local: true) do |f| %>
-      <%= render 'shared/error_messages' %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control #{field_error_class(@user, :name)}" %>
-      <%= error_messages_for(@user, :name) %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control #{field_error_class(@user, :email)}" %>
-      <%= error_messages_for(@user, :email) %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: "form-control #{field_error_class(@user, :password)}" %>
-      <%= error_messages_for(@user, :password) %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: "form-control #{field_error_class(@user, :password_confirmation)}" %>
-      <%= error_messages_for(@user, :password_confirmation) %>
-
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
-    <% end %>
+    <%= render 'form' %>
   </div>
 </div>

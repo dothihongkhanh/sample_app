@@ -221,3 +221,44 @@ input {
   width: auto;
   margin-left: 0;
 }
+
+/* Users index */
+.users {
+  list-style: none;
+  margin: 0;
+
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+/* pagination */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+  gap: 4px;
+}
+
+.pagination .previous_page,
+.pagination .next_page,
+.pagination a,
+.pagination em {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  color: #0d6efd;
+}
+
+.pagination .disabled,
+.pagination em.current {
+  background-color: #5387d4;
+  color: white;
+  cursor: default;
+}

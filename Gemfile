@@ -72,3 +72,5 @@ end
 gem "sassc-rails"
 gem "bootstrap"
 gem "bcrypt"
+gem "faker"
+gem "will_paginate"
