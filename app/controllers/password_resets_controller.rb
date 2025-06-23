@@ -26,13 +26,13 @@ class PasswordResetsController < ApplicationController
     if user_params[:password].blank?
       @user.errors.add(:password, "can't be empty")
       render :edit, status: :unprocessable_entity
-    elsif !@user.update(user_params)
-      render :edit, status: :unprocessable_entity
-    else
+    elsif @user.update(user_params)
       log_in @user
-      @user.update_column(:reset_digest, nil)
+      @user.update_columns(reset_digest: nil)
       flash[:success] = "Password has been reset."
       redirect_to @user
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -57,9 +57,9 @@ class PasswordResetsController < ApplicationController
   end
 
   def check_expiration
-    if @user.password_reset_expired?
-      flash[:danger] = "Password reset has expired."
-      redirect_to new_password_reset_url
-    end
+    return unless @user.password_reset_expired?
+
+    flash[:danger] = "Password reset has expired."
+    redirect_to new_password_reset_url
   end
 end

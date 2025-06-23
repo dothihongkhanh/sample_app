@@ -59,16 +59,16 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    unless current_user?(@user)
-      flash[:danger] = "You don't have permission to access this page."
-      redirect_to root_url
-    end
+    return if current_user?(@user)
+
+    flash[:danger] = "You don't have permission to access this page."
+    redirect_to root_url
   end
 
   def admin_user
-    unless current_user.admin?
-      flash[:danger] = "Only admin have permission to delete user."
-      redirect_to root_url
-    end
+    return if current_user.admin?
+
+    flash[:danger] = "Only admin have permission to delete user."
+    redirect_to root_url
   end
 end
