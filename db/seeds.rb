@@ -3,7 +3,9 @@ User.create!(name: "Admin",
              email: "admin@railstutorial.org",
              password: "123123",
              password_confirmation: "123123",
-             admin: true)
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
 
 # Generate a bunch of additional users.
 99.times do |n|
