@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     redirect_to root_url and return unless @user.activated?
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.includes(:user, image_attachment: :blob).paginate(page: params[:page])
   end
 
   def new
