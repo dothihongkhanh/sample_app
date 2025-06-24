@@ -17,6 +17,10 @@ Rails.application.routes.draw do
 
   resources :users do
     get "/signup", to: "new", on: :collection
+    member do
+      get :following
+      get :followers
+    end
   end
 
   resources :account_activations, only: [ :edit ]
@@ -24,6 +28,8 @@ Rails.application.routes.draw do
   resources :password_resets, only: [ :new, :create, :edit, :update ]
 
   resources :microposts, only: [ :create, :destroy ]
+
+  resources :relationships, only: [ :create, :destroy ]
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
