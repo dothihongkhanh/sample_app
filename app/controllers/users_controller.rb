@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     redirect_to root_url and return unless @user.activated?
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.includes(:user, image_attachment: :blob).paginate(page: params[:page])
   end
 
   def new
@@ -71,16 +71,16 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    unless current_user?(@user)
-      flash[:danger] = "You don't have permission to access this page."
-      redirect_to root_url
-    end
+    return if current_user?(@user)
+
+    flash[:danger] = "You don't have permission to access this page."
+    redirect_to root_url
   end
 
   def admin_user
-    unless current_user.admin?
-      flash[:danger] = "Only admin have permission to delete user."
-      redirect_to root_url
-    end
+    return if current_user.admin?
+
+    flash[:danger] = "Only admin have permission to delete user."
+    redirect_to root_url
   end
 end
