@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user
     redirect_to root_url and return unless @user.activated?
+    @microposts = @user.microposts.includes(:user, image_attachment: :blob).paginate(page: params[:page])
   end
 
   def new
@@ -56,14 +56,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def logged_in_user
-    return if logged_in?
-
-    store_location
-    flash[:danger] = "Please login!"
-    redirect_to login_session_path
   end
 
   def correct_user
